@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -15,19 +16,37 @@ export default function Home() {
 
       <ul className="flex justify-center space-x-4">
         <li>
-          <button className="rounded-full bg-yellow-400 px-4 py-2 font-bold text-white transition duration-300 hover:bg-yellow-500">
+          <Link
+            href={{
+              pathname: '/game',
+              query: { difficulty: 'easy' },
+            }}
+            className="rounded-full bg-yellow-400 px-4 py-2 font-bold text-white transition duration-300 hover:bg-yellow-500"
+          >
             Easy
-          </button>
+          </Link>
         </li>
         <li>
-          <button className="rounded-full bg-green-400 px-4 py-2 font-bold text-white transition duration-300 hover:bg-green-500">
+          <Link
+            href={{
+              pathname: '/game',
+              query: { difficulty: 'medium' },
+            }}
+            className="rounded-full bg-green-400 px-4 py-2 font-bold text-white transition duration-300 hover:bg-green-500"
+          >
             Medium
-          </button>
+          </Link>
         </li>
         <li>
-          <button className="rounded-full bg-red-400 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-500">
+          <Link
+            href={{
+              pathname: '/game',
+              query: { difficulty: 'easy' },
+            }}
+            className="rounded-full bg-red-400 px-4 py-2 font-bold text-white transition duration-300 hover:bg-red-500"
+          >
             Hard
-          </button>
+          </Link>
         </li>
       </ul>
     </main>
