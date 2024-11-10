@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { countryList } from './countryList';
 import QuestionIcon from '@/app/components/QuestionIcon';
@@ -25,7 +25,7 @@ type Country = (typeof countryList)[number];
 
 let audio: HTMLAudioElement;
 
-export default function Game() {
+function Game() {
   const searchParams = useSearchParams();
   const [currentCountryIndex, setCurrentCountryIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -105,5 +105,13 @@ export default function Game() {
         </button>
       )}
     </main>
+  );
+}
+
+export default function GamePage() {
+  return (
+    <Suspense fallback="Loading...">
+      <Game />
+    </Suspense>
   );
 }
