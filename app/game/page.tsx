@@ -90,6 +90,7 @@ function Game() {
             <Image
               src="/bluey-hello.gif"
               alt="Next"
+              unoptimized
               width={100}
               height={100}
               className="mt-4 rounded-full"

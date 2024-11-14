@@ -26,167 +26,146 @@ export const countryList = [
     name: 'Afghanistan',
     image: afghanistanFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggafgh01.mp3',
+    audio: '/audio/afghanistan.mp3',
   },
   {
     key: 'argentina',
     name: 'Argentina',
     image: argentinaFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggarge03.mp3',
+    audio: '/audio/argentina.mp3',
   },
   {
     key: 'australia',
     name: 'Australia',
     image: australiaFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggaust04.mp3',
+    audio: '/audio/australia.mp3',
   },
   {
     key: 'bahrain',
     name: 'Bahrain',
     image: bahrainFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggbahr02.mp3',
+    audio: '/audio/bahrain.mp3',
   },
   {
     key: 'bangladesh',
     name: 'Bangladesh',
     image: bangladeshFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggbang05.mp3',
+    audio: '/audio/bangladesh.mp3',
   },
   {
     key: 'brazil',
     name: 'Brazil',
     image: brazilFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggbraz02.mp3',
+    audio: '/audio/brazil.mp3',
   },
   {
     key: 'canada',
     name: 'Canada',
     image: canadaFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggcana03.mp3',
+    audio: '/audio/canada.mp3',
   },
   {
     key: 'china',
     name: 'China',
     image: chinaFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/c/china001.mp3',
+    audio: '/audio/china.mp3',
   },
   {
     key: 'denmark',
     name: 'Denmark',
     image: denmarkFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggdenm01.mp3',
+    audio: '/audio/denmark.mp3',
   },
   {
     key: 'egypt',
     name: 'Egypt',
     image: egyptFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggegyp01.mp3',
+    audio: '/audio/egypt.mp3',
   },
   {
     key: 'france',
     name: 'France',
     image: franceFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/bix/bixfra02.mp3',
+    audio: '/audio/france.mp3',
   },
   {
     key: 'germany',
     name: 'Germany',
     image: germanyFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/gggerm03.mp3',
+    audio: '/audio/germany.mp3',
   },
   {
     key: 'greece',
     name: 'Greece',
     image: greeceFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/gggree01.mp3',
+    audio: '/audio/greece.mp3',
   },
   {
     key: 'india',
     name: 'India',
     image: indiaFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggindi01.mp3',
+    audio: '/audio/india.mp3',
   },
   {
     key: 'indonesia',
     name: 'Indonesia',
     image: indonesiaFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggindo02.mp3',
+    audio: '/audio/indonesia.mp3',
   },
   {
     key: 'iran',
     name: 'Iran',
     image: iranFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggiran01.mp3',
+    audio: '/audio/iran.mp3',
   },
   {
     key: 'iraq',
     name: 'Iraq',
     image: iraqFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggiraq01.mp3',
+    audio: '/audio/iraq.mp3',
   },
   {
     key: 'israel',
     name: 'Israel',
     image: israelFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggisra01.mp3',
+    audio: '/audio/israel.mp3',
   },
   {
     key: 'italy',
     name: 'Italy',
     image: italyFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggital01.mp3',
+    audio: '/audio/italy.mp3',
   },
   {
     key: 'japan',
     name: 'Japan',
     image: japanFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/j/japan001.mp3',
+    audio: '/audio/japan.mp3',
   },
   {
     key: 'malaysia',
     name: 'Malaysia',
     image: malaysiaFlag,
     difficulty: 1,
-    audio:
-      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggmala18.mp3',
+    audio: '/audio/malaysia.mp3',
   },
 ];
