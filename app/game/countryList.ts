@@ -6,6 +6,7 @@ import bangladeshFlag from '@/app/assets/flags/bangladesh.svg';
 import brazilFlag from '@/app/assets/flags/brazil.svg';
 import canadaFlag from '@/app/assets/flags/canada.svg';
 import chinaFlag from '@/app/assets/flags/china.svg';
+import denmarkFlag from '@/app/assets/flags/denmark.svg';
 import egyptFlag from '@/app/assets/flags/egypt.svg';
 import franceFlag from '@/app/assets/flags/france.svg';
 import germanyFlag from '@/app/assets/flags/germany.svg';
@@ -13,6 +14,9 @@ import greeceFlag from '@/app/assets/flags/greece.svg';
 import indiaFlag from '@/app/assets/flags/india.svg';
 import indonesiaFlag from '@/app/assets/flags/indonesia.svg';
 import iranFlag from '@/app/assets/flags/iran.svg';
+import iraqFlag from '@/app/assets/flags/iraq.svg';
+import israelFlag from '@/app/assets/flags/israel.svg';
+import italyFlag from '@/app/assets/flags/italy.svg';
 
 export const countryList = [
   {
@@ -80,6 +84,14 @@ export const countryList = [
       'https://media.merriam-webster.com/audio/prons/en/us/mp3/c/china001.mp3',
   },
   {
+    key: 'denmark',
+    name: 'Denmark',
+    image: denmarkFlag,
+    difficulty: 1,
+    audio:
+      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggdenm01.mp3',
+  },
+  {
     key: 'egypt',
     name: 'Egypt',
     image: egyptFlag,
@@ -134,5 +146,29 @@ export const countryList = [
     difficulty: 1,
     audio:
       'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggiran01.mp3',
+  },
+  {
+    key: 'iraq',
+    name: 'Iraq',
+    image: iraqFlag,
+    difficulty: 1,
+    audio:
+      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggiraq01.mp3',
+  },
+  {
+    key: 'israel',
+    name: 'Israel',
+    image: israelFlag,
+    difficulty: 1,
+    audio:
+      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggisra01.mp3',
+  },
+  {
+    key: 'italy',
+    name: 'Italy',
+    image: italyFlag,
+    difficulty: 1,
+    audio:
+      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggital01.mp3',
   },
 ];
