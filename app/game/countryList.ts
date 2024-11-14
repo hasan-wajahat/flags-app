@@ -26,6 +26,10 @@ import newzealandFlag from '@/app/assets/flags/newzealand.svg';
 import nigeriaFlag from '@/app/assets/flags/nigeria.svg';
 import omanFlag from '@/app/assets/flags/oman.svg';
 import pakistanFlag from '@/app/assets/flags/pakistan.svg';
+import palestineFlag from '@/app/assets/flags/palestine.svg';
+import philippinesFlag from '@/app/assets/flags/philippines.svg';
+import romaniaFlag from '@/app/assets/flags/romania.svg';
+import saudiArabiaFlag from '@/app/assets/flags/saudi_arabia.svg';
 
 export const countryList = [
   {
@@ -223,5 +227,33 @@ export const countryList = [
     image: pakistanFlag,
     difficulty: 1,
     audio: '/audio/pakistan.mp3',
+  },
+  {
+    key: 'palestine',
+    name: 'Palestine',
+    image: palestineFlag,
+    difficulty: 1,
+    audio: '/audio/palestine.mp3',
+  },
+  {
+    key: 'philippines',
+    name: 'Philippines',
+    image: philippinesFlag,
+    difficulty: 1,
+    audio: '/audio/philippines.mp3',
+  },
+  {
+    key: 'romania',
+    name: 'Romania',
+    image: romaniaFlag,
+    difficulty: 1,
+    audio: '/audio/romania.mp3',
+  },
+  {
+    key: 'saudi_arabia',
+    name: 'Saudi Arabia',
+    image: saudiArabiaFlag,
+    difficulty: 1,
+    audio: '/audio/saudi_arabia.mp3',
   },
 ];
