@@ -8,6 +8,7 @@ export default function Home() {
         <Image
           src="/bluey-dancing.gif"
           alt="Bluey Dancing"
+          unoptimized
           width={200}
           height={200}
         />
