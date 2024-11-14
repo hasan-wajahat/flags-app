@@ -17,6 +17,8 @@ import iranFlag from '@/app/assets/flags/iran.svg';
 import iraqFlag from '@/app/assets/flags/iraq.svg';
 import israelFlag from '@/app/assets/flags/israel.svg';
 import italyFlag from '@/app/assets/flags/italy.svg';
+import japanFlag from '@/app/assets/flags/japan.svg';
+import malaysiaFlag from '@/app/assets/flags/malaysia.svg';
 
 export const countryList = [
   {
@@ -170,5 +172,21 @@ export const countryList = [
     difficulty: 1,
     audio:
       'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggital01.mp3',
+  },
+  {
+    key: 'japan',
+    name: 'Japan',
+    image: japanFlag,
+    difficulty: 1,
+    audio:
+      'https://media.merriam-webster.com/audio/prons/en/us/mp3/j/japan001.mp3',
+  },
+  {
+    key: 'malaysia',
+    name: 'Malaysia',
+    image: malaysiaFlag,
+    difficulty: 1,
+    audio:
+      'https://media.merriam-webster.com/audio/prons/en/us/mp3/gg/ggmala18.mp3',
   },
 ];
