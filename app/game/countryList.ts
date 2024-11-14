@@ -19,6 +19,13 @@ import israelFlag from '@/app/assets/flags/israel.svg';
 import italyFlag from '@/app/assets/flags/italy.svg';
 import japanFlag from '@/app/assets/flags/japan.svg';
 import malaysiaFlag from '@/app/assets/flags/malaysia.svg';
+import mexicoFlag from '@/app/assets/flags/mexico.svg';
+import moroccoFlag from '@/app/assets/flags/morocco.svg';
+import nepalFlag from '@/app/assets/flags/nepal.svg';
+import newzealandFlag from '@/app/assets/flags/newzealand.svg';
+import nigeriaFlag from '@/app/assets/flags/nigeria.svg';
+import omanFlag from '@/app/assets/flags/oman.svg';
+import pakistanFlag from '@/app/assets/flags/pakistan.svg';
 
 export const countryList = [
   {
@@ -167,5 +174,54 @@ export const countryList = [
     image: malaysiaFlag,
     difficulty: 1,
     audio: '/audio/malaysia.mp3',
+  },
+  {
+    key: 'mexico',
+    name: 'Mexico',
+    image: mexicoFlag,
+    difficulty: 1,
+    audio: '/audio/mexico.mp3',
+  },
+  {
+    key: 'morocco',
+    name: 'Morocco',
+    image: moroccoFlag,
+    difficulty: 1,
+    audio: '/audio/morocco.mp3',
+  },
+  {
+    key: 'nepal',
+    name: 'Nepal',
+    image: nepalFlag,
+    difficulty: 1,
+    audio: '/audio/nepal.mp3',
+  },
+  {
+    key: 'newzealand',
+    name: 'New Zealand',
+    image: newzealandFlag,
+    difficulty: 1,
+    audio: '/audio/newzealand.mp3',
+  },
+  {
+    key: 'nigeria',
+    name: 'Nigeria',
+    image: nigeriaFlag,
+    difficulty: 1,
+    audio: '/audio/nigeria.mp3',
+  },
+  {
+    key: 'oman',
+    name: 'Oman',
+    image: omanFlag,
+    difficulty: 1,
+    audio: '/audio/oman.mp3',
+  },
+  {
+    key: 'pakistan',
+    name: 'Pakistan',
+    image: pakistanFlag,
+    difficulty: 1,
+    audio: '/audio/pakistan.mp3',
   },
 ];
