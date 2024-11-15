@@ -64,7 +64,7 @@ function Game() {
   return (
     <main className="p-8 text-center">
       <h1 className="my-6 text-4xl font-extrabold text-gray-600">
-        Guess the flag
+        Guess the flags
       </h1>
       {currentCountry && (
         <Image
