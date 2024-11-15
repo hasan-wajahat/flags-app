@@ -1,0 +1,110 @@
+name: Sematext Synthetics CI/CD Integration
+
+on: [push] # Runs on every commit
+
+jobs:
+  sematext_check:
+    runs-on: ubuntu-latest
+    env:
+      MONITOR_GROUP_ID: 7
+      REGION: 'EU'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract commit details
+        id: commit_info
+        run: |
+          echo "COMMIT_HASH=$(git rev-parse HEAD)" >> $GITHUB_ENV
+          echo "BRANCH_NAME=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+
+      - name: Set Sematext base URL
+        id: set_base_url
+        run: |
+          if [[ "${{ env.REGION }}" == "EU" ]]; then
+            #echo "BASE_URL=https://apps.eu.sematext.com/synthetics-api/api" >> $GITHUB_ENV
+            # Adjusted for PR env, to test the feature
+            echo "BASE_URL=https://pr-6156.apps.test.sematext.com/synthetics-api/api" >> $GITHUB_ENV
+          else
+            echo "BASE_URL=https://apps.sematext.com/synthetics-api/api" >> $GITHUB_ENV
+          fi
+
+      - name: Trigger Sematext Synthetics Check
+        id: trigger_check
+        run: |
+          api_url="${{ env.BASE_URL }}/groups/${{ env.MONITOR_GROUP_ID }}/runs/github"
+          deployment_url=`cat "$GITHUB_EVENT_PATH" | jq .deployment_status.target_url`
+          echo "Running monitor for deployment URL: $deployment_url"
+
+          payload=$(jq -n --arg hash "${{ env.COMMIT_HASH }}" --arg branch "${{ env.BRANCH_NAME }}" --arg url "$deployment_url" \
+            '{commitHash: $hash, branch: $branch, url: $url}')
+
+          response=$(curl -s -w "%{http_code}" -o response.json -X POST "$api_url" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: apiKey ${{ secrets.SEMATEXT_API_KEY }}" \
+            -d "$payload")
+
+          http_code=$(tail -n1 <<< "$response")
+          if [[ "$http_code" != "201" ]]; then
+            echo "Failed to trigger Sematext check. HTTP status: $http_code"
+            cat response.json
+            exit 1
+          fi
+
+          echo "Check triggered successfully. Extracting run ID..."
+          run_id=$(jq -r '.data.id' response.json)
+          if [[ -z "$run_id" ]]; then
+            echo "Failed to extract run ID from the response:"
+            cat response.json
+            exit 1
+          fi
+
+          echo "Run ID: $run_id"
+          echo "run_id=$run_id" >> $GITHUB_ENV
+
+      - name: Poll Sematext for Results
+        id: poll_results
+        run: |
+          poll_url="${{ env.BASE_URL }}/groups/${{ env.MONITOR_GROUP_ID }}/runs/${{ env.run_id }}/github"
+
+          max_poll_duration=120  # Total allowed polling duration in seconds
+          interval=10  # Wait time between poll attempts in seconds
+          elapsed_time=0  # Counter for total polling time
+
+          sleep 3   # Initial wait to allow the run to start
+
+          while [[ "$elapsed_time" -lt "$max_poll_duration" ]]; do
+            echo -e " \nPolling Sematext... Elapsed time: ${elapsed_time}s"
+
+            response=$(curl -s -w "%{http_code}" -o result.txt "$poll_url" \
+              -H "Authorization: apiKey ${{ secrets.SEMATEXT_API_KEY }}")
+
+            status_code=$(tail -n1 <<< "$response")
+
+            if [[ "$status_code" == "200" ]]; then
+              echo -e " \nRun completed. Result:"
+              cat result.txt
+
+              first_line=$(head -n 1 result.txt)
+              if echo "$first_line" | grep -q "All monitors passed successfully."; then
+                echo "Synthetics check passed."
+                exit 0
+              else
+                echo "Synthetics check failed."
+                exit 1
+              fi
+            elif [[ "$status_code" == "202" ]]; then
+              cat result.txt     # Print the current status to see how many monitors are done
+              echo "Retrying in ${interval}s..."
+            else
+              echo "Unexpected status code when polling for results: $status_code"
+              cat result.txt
+              exit 1
+            fi
+
+            sleep $interval
+            elapsed_time=$((elapsed_time + interval))
+          done
+
+          echo "Polling timed out after ${max_poll_duration}s."
+          exit 1
