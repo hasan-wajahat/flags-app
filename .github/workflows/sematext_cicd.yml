@@ -6,7 +6,7 @@ jobs:
   sematext_check:
     runs-on: ubuntu-latest
     env:
-      MONITOR_GROUP_ID: 7
+      MONITOR_GROUP_ID: 2
       REGION: 'EU'
     steps:
       - name: Checkout repository
