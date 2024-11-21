@@ -1,6 +1,6 @@
 name: Sematext Synthetics CI/CD Integration
 
-on: [push] # Runs on every commit
+on: [deployment] # Runs on every commit
 
 jobs:
   sematext_check:
