@@ -1,4 +1,4 @@
-name: Sematext Synthetics CI/CD Integration
+name: Sematext Synthetics CI/CD Integrations
 
 on: [deployment] # Runs on every commit
 
