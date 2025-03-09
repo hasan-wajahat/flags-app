@@ -4,6 +4,35 @@ import { useEffect } from 'react';
 import { preloadAssets } from './utils/preloadAssets';
 
 export default function PWAManager() {
+  // Preload important routes for offline use
+  const preloadRoutes = async () => {
+    try {
+      console.log('Preloading routes for offline use...');
+      
+      // Preload the home and game routes
+      const routes = ['/', '/game'];
+      
+      // Fetch each route to ensure it's cached by the service worker
+      await Promise.all(
+        routes.map(route => 
+          fetch(route, { cache: 'force-cache' })
+            .then(res => {
+              if (!res.ok) {
+                console.warn(`Failed to preload route: ${route}`);
+              } else {
+                console.log(`Route preloaded: ${route}`);
+              }
+            })
+            .catch(err => console.warn(`Error preloading route ${route}:`, err))
+        )
+      );
+      
+      console.log('Routes preloaded successfully');
+    } catch (error) {
+      console.error('Error preloading routes:', error);
+    }
+  };
+
   useEffect(() => {
     // Register service worker
     if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
@@ -14,6 +43,9 @@ export default function PWAManager() {
             window.navigator.standalone === true) {
           console.log('Running in PWA mode');
           preloadAssets();
+          
+          // Preload critical routes for offline use
+          preloadRoutes();
         } else {
           console.log('Running in browser mode');
         }
