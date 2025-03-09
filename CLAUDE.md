@@ -2,9 +2,10 @@
 
 ## Build Commands
 - `pnpm dev`: Run dev server with turbopack (`next dev --turbopack`)
-- `pnpm build`: Build for production
+- `pnpm build`: Build for production (includes PWA setup)
 - `pnpm start`: Start production server
 - `pnpm lint`: Run ESLint
+- `pnpm generate-icons`: Generate PWA icons from SVG templates
 
 ## Code Style
 

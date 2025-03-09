@@ -1,7 +1,9 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import clsx from 'clsx';
+import PWAManager from './pwaManager';
+import NetworkStatus from './components/NetworkStatus';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -14,9 +16,25 @@ const geistMono = localFont({
   weight: '100 900',
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: '#4f46e5',
+};
+
 export const metadata: Metadata = {
   title: 'Flags Game',
-  description: 'Flags Game',
+  description: 'Learn country flags with this educational app',
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Flags App',
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export default function RootLayout({
@@ -34,6 +52,12 @@ export default function RootLayout({
         )}
       >
         {children}
+        {/* PWAManager has no UI but handles service worker and asset preloading */}
+        <div id="pwa-components">
+          {/* @ts-expect-error Async Server Component */}
+          <PWAManager />
+          <NetworkStatus />
+        </div>
       </body>
     </html>
   );

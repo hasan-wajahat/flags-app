@@ -32,6 +32,7 @@ function Game() {
   const difficulty = searchParams.get('difficulty') || 'easy';
   const difficultyLevel = difficultLevels[difficulty];
   const [shuffledCountries, setShuffledCountries] = useState<Country[]>([]);
+  const [isPwa, setIsPwa] = useState(false);
 
   const playAudio = () => {
     audio.src = currentCountry.audio;
@@ -44,6 +45,13 @@ function Game() {
     );
     setShuffledCountries(shuffleArray(countryForDifficulty));
     audio = new Audio();
+    
+    // Check if app is running as PWA
+    if (typeof window !== 'undefined') {
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
+                          (window.navigator as any).standalone === true;
+      setIsPwa(isStandalone);
+    }
   }, [difficultyLevel]);
 
   const goNext = () => {
@@ -64,7 +72,7 @@ function Game() {
   return (
     <main className="p-8 text-center">
       <h1 className="my-6 text-4xl font-extrabold text-gray-600">
-        Guess the flags
+        Guess the flags {isPwa && <span className="ml-2 rounded bg-indigo-600 px-2 py-1 text-sm font-medium text-white">Offline Ready</span>}
       </h1>
       {currentCountry && (
         <Image
