@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import { countryList } from './countryList';
 import QuestionIcon from '@/app/components/QuestionIcon';
@@ -23,20 +23,23 @@ function shuffleArray<T>(array: T[]): T[] {
 
 type Country = (typeof countryList)[number];
 
-let audio: HTMLAudioElement;
-
 function Game() {
   const searchParams = useSearchParams();
   const [currentCountryIndex, setCurrentCountryIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [audioPlayed, setAudioPlayed] = useState(false);
   const difficulty = searchParams.get('difficulty') || 'easy';
   const difficultyLevel = difficultLevels[difficulty];
   const [shuffledCountries, setShuffledCountries] = useState<Country[]>([]);
   const [isPwa, setIsPwa] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const playAudio = () => {
-    audio.src = currentCountry.audio;
-    audio.play();
+    if (audioRef.current) {
+      audioRef.current.src = currentCountry.audio;
+      audioRef.current.play();
+      setAudioPlayed(true);
+    }
   };
 
   useEffect(() => {
@@ -44,7 +47,7 @@ function Game() {
       (flag) => flag.difficulty <= difficultyLevel
     );
     setShuffledCountries(shuffleArray(countryForDifficulty));
-    audio = new Audio();
+    audioRef.current = new Audio();
     
     // Check if app is running as PWA
     if (typeof window !== 'undefined') {
@@ -52,6 +55,12 @@ function Game() {
                           (window.navigator as any).standalone === true;
       setIsPwa(isStandalone);
     }
+    
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
   }, [difficultyLevel]);
 
   const goNext = () => {
@@ -60,6 +69,7 @@ function Game() {
       return nextIndex >= shuffledCountries.length ? 0 : nextIndex;
     });
     setShowAnswer(false);
+    setAudioPlayed(false);
   };
 
   const onShowAnswer = () => {
@@ -92,25 +102,40 @@ function Game() {
             <p className="text-3xl font-bold text-slate-700">
               {currentCountry?.name}
             </p>
-            <button onClick={playAudio} className="ml-4">
+            <button 
+              onClick={playAudio} 
+              className={`ml-4 ${!audioPlayed && 'animate-pulse'}`}
+              aria-label={`Listen to pronunciation of ${currentCountry?.name}`}
+            >
               <SpeakerIcon className="h-8 w-8" />
             </button>
           </div>
-          <button onClick={goNext}>
+          <button 
+            onClick={goNext}
+            disabled={!audioPlayed}
+            className="mt-4 relative"
+            aria-label="Next flag"
+          >
             <Image
               src="/bluey-hello.gif"
               alt="Next"
               unoptimized
               width={100}
               height={100}
-              className="mt-4 rounded-full"
+              className={`rounded-full transition-opacity duration-300 ${!audioPlayed ? 'opacity-50' : 'opacity-100'}`}
             />
+            {!audioPlayed && (
+              <div className="absolute inset-0 flex items-center justify-center text-sm font-medium text-white bg-black bg-opacity-40 rounded-full">
+                Play audio first
+              </div>
+            )}
           </button>
         </div>
       ) : (
         <button
           onClick={onShowAnswer}
           className="blink text-yellow-500 hover:text-yellow-600"
+          aria-label="Show answer"
         >
           <QuestionIcon className="h-16 w-16" />
         </button>
