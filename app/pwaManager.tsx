@@ -10,6 +10,7 @@ export default function PWAManager() {
       window.addEventListener('load', () => {
         // When PWA is installed or opened, preload assets
         if (window.matchMedia('(display-mode: standalone)').matches || 
+            // @ts-ignore: 'standalone' exists on iOS Safari but not in standard Navigator type
             window.navigator.standalone === true) {
           console.log('Running in PWA mode');
           preloadAssets();

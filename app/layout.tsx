@@ -54,7 +54,6 @@ export default function RootLayout({
         {children}
         {/* PWAManager has no UI but handles service worker and asset preloading */}
         <div id="pwa-components">
-          {/* @ts-expect-error Async Server Component */}
           <PWAManager />
           <NetworkStatus />
         </div>
