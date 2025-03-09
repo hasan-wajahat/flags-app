@@ -3,9 +3,11 @@
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link'; // Import Link
 import { countryList } from './countryList';
 import QuestionIcon from '@/app/components/QuestionIcon';
 import SpeakerIcon from '@/app/components/SpeakerIcon';
+import BackButtonIcon from '@/app/components/BackButtonIcon'; // Import BackButtonIcon
 
 const difficultLevels: Record<string, number> = {
   easy: 1,
@@ -82,6 +84,9 @@ function Game() {
 
   return (
     <main className="p-8 text-center">
+      <Link href=".." className="mb-4 text-red-300" aria-label="Go back">
+        <BackButtonIcon size={64} />
+      </Link>
       <h1 className="my-6 text-4xl font-extrabold text-gray-600">
         Guess the flags
       </h1>
