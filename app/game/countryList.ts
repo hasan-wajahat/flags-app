@@ -3,6 +3,7 @@ import argentinaFlag from '@/app/assets/flags/argentina.svg';
 import australiaFlag from '@/app/assets/flags/australia.svg';
 import bahrainFlag from '@/app/assets/flags/bahrain.svg';
 import bangladeshFlag from '@/app/assets/flags/bangladesh.svg';
+import belgiumFlag from '@/app/assets/flags/belgium.svg';
 import brazilFlag from '@/app/assets/flags/brazil.svg';
 import canadaFlag from '@/app/assets/flags/canada.svg';
 import chinaFlag from '@/app/assets/flags/china.svg';
@@ -28,8 +29,17 @@ import omanFlag from '@/app/assets/flags/oman.svg';
 import pakistanFlag from '@/app/assets/flags/pakistan.svg';
 import palestineFlag from '@/app/assets/flags/palestine.svg';
 import philippinesFlag from '@/app/assets/flags/philippines.svg';
+import portugalFlag from '@/app/assets/flags/portugal.png';
 import romaniaFlag from '@/app/assets/flags/romania.svg';
 import saudiArabiaFlag from '@/app/assets/flags/saudi_arabia.svg';
+import southKoreaFlag from '@/app/assets/flags/south_korea.svg';
+import spainFlag from '@/app/assets/flags/spain.svg';
+import swedenFlag from '@/app/assets/flags/sweden.svg';
+import switzerlandFlag from '@/app/assets/flags/switzerland.svg';
+import thailandFlag from '@/app/assets/flags/thailand.svg';
+import turkeyFlag from '@/app/assets/flags/turkey.svg';
+import ukraineFlag from '@/app/assets/flags/ukraine.svg';
+import vietnamFlag from '@/app/assets/flags/vietnam.svg';
 
 export const countryList = [
   {
@@ -57,7 +67,7 @@ export const countryList = [
     key: 'bahrain',
     name: 'Bahrain',
     image: bahrainFlag,
-    difficulty: 1,
+    difficulty: 2,
     audio: '/audio/bahrain.mp3',
   },
   {
@@ -190,7 +200,7 @@ export const countryList = [
     key: 'morocco',
     name: 'Morocco',
     image: moroccoFlag,
-    difficulty: 1,
+    difficulty: 2,
     audio: '/audio/morocco.mp3',
   },
   {
@@ -218,7 +228,7 @@ export const countryList = [
     key: 'oman',
     name: 'Oman',
     image: omanFlag,
-    difficulty: 1,
+    difficulty: 2,
     audio: '/audio/oman.mp3',
   },
   {
@@ -239,14 +249,14 @@ export const countryList = [
     key: 'philippines',
     name: 'Philippines',
     image: philippinesFlag,
-    difficulty: 1,
+    difficulty: 2,
     audio: '/audio/philippines.mp3',
   },
   {
     key: 'romania',
     name: 'Romania',
     image: romaniaFlag,
-    difficulty: 1,
+    difficulty: 2,
     audio: '/audio/romania.mp3',
   },
   {
@@ -255,5 +265,75 @@ export const countryList = [
     image: saudiArabiaFlag,
     difficulty: 1,
     audio: '/audio/saudi_arabia.mp3',
+  },
+  {
+    key: 'ukraine',
+    name: 'Ukraine',
+    image: ukraineFlag,
+    difficulty: 2,
+    audio: '/audio/ukraine.mp3',
+  },
+  {
+    key: 'south_korea',
+    name: 'South Korea',
+    image: southKoreaFlag,
+    difficulty: 2,
+    audio: '/audio/south_korea.mp3',
+  },
+  {
+    key: 'thailand',
+    name: 'Thailand',
+    image: thailandFlag,
+    difficulty: 2,
+    audio: '/audio/thailand.mp3',
+  },
+  {
+    key: 'vietnam',
+    name: 'Vietnam',
+    image: vietnamFlag,
+    difficulty: 2,
+    audio: '/audio/vietnam.mp3',
+  },
+  {
+    key: 'switzerland',
+    name: 'Switzerland',
+    image: switzerlandFlag,
+    difficulty: 2,
+    audio: '/audio/switzerland.mp3',
+  },
+  {
+    key: 'spain',
+    name: 'Spain',
+    image: spainFlag,
+    difficulty: 1,
+    audio: '/audio/spain.mp3',
+  },
+  {
+    key: 'portugal',
+    name: 'Portugal',
+    image: portugalFlag,
+    difficulty: 2,
+    audio: '/audio/portugal.mp3',
+  },
+  {
+    key: 'sweden',
+    name: 'Sweden',
+    image: swedenFlag,
+    difficulty: 2,
+    audio: '/audio/sweden.mp3',
+  },
+  {
+    key: 'belgium',
+    name: 'Belgium',
+    image: belgiumFlag,
+    difficulty: 2,
+    audio: '/audio/belgium.mp3',
+  },
+  {
+    key: 'turkey',
+    name: 'Turkey',
+    image: turkeyFlag,
+    difficulty: 1,
+    audio: '/audio/turkey.mp3',
   },
 ];
