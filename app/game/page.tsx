@@ -31,14 +31,13 @@ function Game() {
   const difficulty = searchParams.get('difficulty') || 'easy';
   const difficultyLevel = difficultLevels[difficulty];
   const [shuffledCountries, setShuffledCountries] = useState<Country[]>([]);
-  const [isPwa, setIsPwa] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const playAudio = () => {
     if (audioRef.current) {
       audioRef.current.src = currentCountry.audio;
       audioRef.current.play();
-      setAudioPlayed(true);
+      setAudioPlayed(false); // Reset audioPlayed state when playing new audio
     }
   };
 
@@ -48,17 +47,19 @@ function Game() {
     );
     setShuffledCountries(shuffleArray(countryForDifficulty));
     audioRef.current = new Audio();
-    
-    // Check if app is running as PWA
-    if (typeof window !== 'undefined') {
-      const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
-                          (window.navigator as any).standalone === true;
-      setIsPwa(isStandalone);
+
+    const handleAudioEnded = () => {
+      setAudioPlayed(true);
+    };
+
+    if (audioRef.current) {
+      audioRef.current.addEventListener('ended', handleAudioEnded);
     }
-    
+
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
+        audioRef.current.removeEventListener('ended', handleAudioEnded);
       }
     };
   }, [difficultyLevel]);
@@ -82,7 +83,7 @@ function Game() {
   return (
     <main className="p-8 text-center">
       <h1 className="my-6 text-4xl font-extrabold text-gray-600">
-        Guess the flags {isPwa && <span className="ml-2 rounded bg-indigo-600 px-2 py-1 text-sm font-medium text-white">Offline Ready</span>}
+        Guess the flags
       </h1>
       <div className="relative mx-auto my-8 flex h-[40vh] max-h-[300px] min-h-[200px] items-center justify-center">
         {currentCountry && (
@@ -92,7 +93,7 @@ function Game() {
             unoptimized
             width={500}
             height={300}
-            className="h-full w-auto max-w-full max-h-full object-contain transition-opacity duration-300"
+            className="h-full max-h-full w-auto max-w-full object-contain transition-opacity duration-300"
           />
         )}
       </div>
@@ -102,18 +103,18 @@ function Game() {
             <p className="text-3xl font-bold text-slate-700">
               {currentCountry?.name}
             </p>
-            <button 
-              onClick={playAudio} 
+            <button
+              onClick={playAudio}
               className={`ml-4 ${!audioPlayed && 'animate-pulse'}`}
               aria-label={`Listen to pronunciation of ${currentCountry?.name}`}
             >
               <SpeakerIcon className="h-8 w-8" />
             </button>
           </div>
-          <button 
+          <button
             onClick={goNext}
             disabled={!audioPlayed}
-            className="mt-4 relative"
+            className="relative mt-4"
             aria-label="Next flag"
           >
             <Image
@@ -125,7 +126,7 @@ function Game() {
               className={`rounded-full transition-opacity duration-300 ${!audioPlayed ? 'opacity-50' : 'opacity-100'}`}
             />
             {!audioPlayed && (
-              <div className="absolute inset-0 flex items-center justify-center text-sm font-medium text-white bg-black bg-opacity-40 rounded-full">
+              <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black bg-opacity-40 text-sm font-medium text-white">
                 Play audio first
               </div>
             )}
