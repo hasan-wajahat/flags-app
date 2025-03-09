@@ -74,16 +74,18 @@ function Game() {
       <h1 className="my-6 text-4xl font-extrabold text-gray-600">
         Guess the flags {isPwa && <span className="ml-2 rounded bg-indigo-600 px-2 py-1 text-sm font-medium text-white">Offline Ready</span>}
       </h1>
-      {currentCountry && (
-        <Image
-          src={currentCountry.image}
-          alt={`Flag of ${currentCountry.name}`}
-          unoptimized
-          width={500}
-          height={300}
-          className="mx-auto my-8"
-        />
-      )}
+      <div className="relative mx-auto my-8 flex h-[40vh] max-h-[300px] min-h-[200px] items-center justify-center">
+        {currentCountry && (
+          <Image
+            src={currentCountry.image}
+            alt={`Flag of ${currentCountry.name}`}
+            unoptimized
+            width={500}
+            height={300}
+            className="h-full w-auto max-w-full max-h-full object-contain transition-opacity duration-300"
+          />
+        )}
+      </div>
       {showAnswer ? (
         <div>
           <div className="flex justify-center">
